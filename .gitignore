@@ -50,3 +50,40 @@ modules.order
 Module.symvers
 Mkfile.old
 dkms.conf
+
+# ========================
+# .NET / C# Specific Below
+# ========================
+
+# Visual Studio cache files
+.vs/
+*.user
+*.suo
+
+# Build results
+bin/
+obj/
+*.log
+
+# NuGet packages
+*.nupkg
+packages/
+*.snupkg
+
+# Others
+*.tmp
+*.db
+*.sqlite
+*.vsidx
+
+# Rider/JetBrains IDEs
+.idea/
+*.sln.iml
+
+# Windows thumbnail cache
+Thumbs.db
+ehthumbs.db
+
+# User-specific files
+*.userosscache
+*.sln.docstates
