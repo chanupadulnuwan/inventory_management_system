@@ -1,7 +1,7 @@
+using inventryUI;
+using Menu; // Namespace for AppMenuForm
 using System;
 using System.Windows.Forms;
-using inventryUI.Views;
-using inventryUI.Presenters;
 
 namespace InventoryUI
 {
@@ -13,12 +13,10 @@ namespace InventoryUI
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
 
-            // Instantiate View and Presenter
-            IProductView view = new ProductForm();
-            var presenter = new ProductPresenter(view);
+            // Optional: Set user role manually for now if login isn't implemented yet
+            Session.CurrentUserRole = "Admin"; // or "User"
 
-            // Run the form
-            Application.Run((Form)view);
+            Application.Run(new AppMenuForm());
         }
     }
 }
