@@ -2,15 +2,8 @@
 {
     partial class ProductForm
     {
-        /// <summary>
-        /// Required designer variable.
-        /// </summary>
         private System.ComponentModel.IContainer components = null;
 
-        /// <summary>
-        /// Clean up any resources being used.
-        /// </summary>
-        /// <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
         protected override void Dispose(bool disposing)
         {
             if (disposing && (components != null))
@@ -22,10 +15,6 @@
 
         #region Windows Form Designer generated code
 
-        /// <summary>
-        /// Required method for Designer support - do not modify
-        /// the contents of this method with the code editor.
-        /// </summary>
         private void InitializeComponent()
         {
             label1 = new Label();
@@ -171,7 +160,6 @@
             dgvProducts.RowHeadersWidth = 51;
             dgvProducts.Size = new Size(300, 188);
             dgvProducts.TabIndex = 14;
-            dgvProducts.CellClick += dgvProducts_CellClick;
             // 
             // ProductForm
             // 
@@ -202,20 +190,21 @@
 
         #endregion
 
-        private Label label1;
-        private Label lblName;
-        private TextBox txtName;
-        private TextBox txtSKU;
-        private TextBox txtQty;
-        private TextBox txtPrice;
-        private Label lblSKU;
-        private Label lblQty;
-        private Label lblPrice;
-        private Button btnAdd;
-        private Button btnEdit;
-        private Button btnDelete;
-        private TextBox txtSearch;
-        private Button btnSearch;
-        private DataGridView dgvProducts;
+        // ✅ Now public for MVC controller access
+        public Label label1;
+        public Label lblName;
+        public TextBox txtName;
+        public TextBox txtSKU;
+        public TextBox txtQty;
+        public TextBox txtPrice;
+        public Label lblSKU;
+        public Label lblQty;
+        public Label lblPrice;
+        public Button btnAdd;
+        public Button btnEdit;
+        public Button btnDelete;
+        public TextBox txtSearch;
+        public Button btnSearch;
+        public DataGridView dgvProducts;
     }
 }
