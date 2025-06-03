@@ -1,43 +1,61 @@
 ﻿using inventryUI.Models;
 using inventryUI.Views;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace inventryUI.Controllers
 {
     public class SupplierController
     {
-        private readonly ISupplierView view;
-        private readonly SupplierRepository repository;
+        private readonly SupplierForm view;
 
-        public SupplierController(ISupplierView view)
+        // ⬇️ These used to be in SupplierRepository.cs
+        private List<Supplier> suppliers = new();
+        private int nextId = 1;
+
+        public SupplierController(SupplierForm view)
         {
             this.view = view;
-            this.repository = new SupplierRepository();
             LoadSuppliers();
         }
 
         public void LoadSuppliers()
         {
-            var suppliers = repository.GetAll();
             view.DisplaySuppliers(suppliers);
         }
 
         public void AddSupplier(string name, string contact)
         {
-            var supplier = new Supplier { Name = name, ContactInfo = contact };
-            repository.Add(supplier);
+            Supplier supplier = new Supplier
+            {
+                SupplierID = nextId++,
+                Name = name,
+                ContactInfo = contact
+            };
+
+            suppliers.Add(supplier);
             LoadSuppliers();
         }
 
-        public void UpdateSupplier(Supplier supplier)
+        public void UpdateSupplier(Supplier updatedSupplier)
         {
-            repository.Update(supplier);
-            LoadSuppliers();
+            var existing = suppliers.FirstOrDefault(s => s.SupplierID == updatedSupplier.SupplierID);
+            if (existing != null)
+            {
+                existing.Name = updatedSupplier.Name;
+                existing.ContactInfo = updatedSupplier.ContactInfo;
+                LoadSuppliers();
+            }
         }
 
         public void DeleteSupplier(int supplierId)
         {
-            repository.Delete(supplierId);
-            LoadSuppliers();
+            var supplier = suppliers.FirstOrDefault(s => s.SupplierID == supplierId);
+            if (supplier != null)
+            {
+                suppliers.Remove(supplier);
+                LoadSuppliers();
+            }
         }
     }
 }
