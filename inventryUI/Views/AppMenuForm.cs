@@ -3,6 +3,7 @@ using inventryUI.Controllers;
 using inventryUI.Views;
 using System;
 using System.Windows.Forms;
+using WinFormsApp1;
 
 namespace Menu
 {
@@ -51,5 +52,10 @@ private void btnSuppliers_Click(object sender, EventArgs e)
     supplierForm.ShowDialog(); // Modal — blocks until closed
 }
 
+        private void btnPurchases_Click(object sender, EventArgs e)
+        {
+            PurchaseOrderForm purchaseForm = new PurchaseOrderForm();
+            purchaseForm.Show();
+        }
     }
 }

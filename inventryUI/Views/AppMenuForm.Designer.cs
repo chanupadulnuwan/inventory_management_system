@@ -73,6 +73,7 @@
             btnPurchases.TabIndex = 4;
             btnPurchases.Text = "Purchases and Orders";
             btnPurchases.UseVisualStyleBackColor = true;
+            btnPurchases.Click += btnPurchases_Click;
             // 
             // btnStockTracking
             // 
