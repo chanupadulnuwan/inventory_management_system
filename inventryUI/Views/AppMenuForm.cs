@@ -41,5 +41,10 @@ namespace Menu
         {
 
         }
+
+        private void AppMenuForm_Load_1(object sender, EventArgs e)
+        {
+
+        }
     }
 }
