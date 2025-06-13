@@ -1,4 +1,4 @@
-using inventryUI;
+﻿using inventryUI;
 using inventryUI.Controllers; 
 using inventryUI.Views;
 using System;
@@ -41,10 +41,15 @@ namespace Menu
         {
 
         }
+private void AppMenuForm_Load_1(object sender, EventArgs e)
+{
+}
 
-        private void AppMenuForm_Load_1(object sender, EventArgs e)
-        {
+private void btnSuppliers_Click(object sender, EventArgs e)
+{
+    SupplierForm supplierForm = new SupplierForm();
+    supplierForm.ShowDialog(); // Modal — blocks until closed
+}
 
-        }
     }
 }
