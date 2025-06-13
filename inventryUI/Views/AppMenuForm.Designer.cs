@@ -136,6 +136,7 @@
             Controls.Add(label1);
             Name = "AppMenuForm";
             Text = "Application Menu";
+            Load += AppMenuForm_Load_1;
             ResumeLayout(false);
             PerformLayout();
         }

@@ -13,8 +13,8 @@ namespace InventoryUI
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
 
-            // Optional: Set user role manually for now if login isn't implemented yet
-            Session.CurrentUserRole = "Admin"; // or "User"
+            // Optional: Set user role manually for now - login isn't implemented yet
+            Session.CurrentUserRole = "Admin"; 
 
             Application.Run(new AppMenuForm());
         }
