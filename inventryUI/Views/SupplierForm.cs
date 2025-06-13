@@ -6,10 +6,11 @@ using inventryUI.Models;
 using inventryUI.Controllers;
 using inventryUI.Views;
 using Menu;
+using System.Xml.Linq;
 
 namespace inventryUI.Views
 {
-    public partial class SupplierForm : Form, ISupplierView
+    public partial class SupplierForm 
     {
         private SupplierController presenter;
 
@@ -37,18 +38,30 @@ namespace inventryUI.Views
             string name = txtName.Text.Trim();
             string contact = txtContact.Text.Trim();
 
-            if (string.IsNullOrEmpty(name) || string.IsNullOrEmpty(contact))
+            if (string.IsNullOrWhiteSpace(name) || string.IsNullOrWhiteSpace(contact))
             {
-                MessageBox.Show("Please enter both name and contact info.");
+                MessageBox.Show("Please enter both Name and Contact Info.", "Input Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
 
             if (!IsValidInput(name, contact))
+            {
+                MessageBox.Show("Input contains invalid characters or is too long.", "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
+            }
 
-            presenter.AddSupplier(name, contact);
-            ClearFields();
+            bool success = presenter.AddSupplier(name, contact);
+
+            if (success)
+            {
+                MessageBox.Show("Supplier added successfully.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                ClearFields();
+            }
+            // ? Duplicate messages are shown by presenter via view.ShowMessage(...)
         }
+
+
+
 
         private void BtnUpdate_Click(object sender, EventArgs e)
         {
@@ -109,6 +122,14 @@ namespace inventryUI.Views
             txtName.Text = "";
             txtContact.Text = "";
         }
+       
+        public void ShowMessage(string message, string title, MessageBoxIcon icon)
+        {
+            MessageBox.Show(message, title, MessageBoxButtons.OK, icon);
+        }
+
+
+
 
         private bool IsValidInput(string name, string contact)
         {
