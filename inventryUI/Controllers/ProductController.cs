@@ -150,5 +150,7 @@ namespace inventryUI.Controllers
             _view.txtQty.Clear();
             _view.txtPrice.Clear();
         }
+
+
     }
 }

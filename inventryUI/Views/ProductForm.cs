@@ -28,5 +28,12 @@ namespace inventryUI.Views
                 txtPrice.Text = dgvProducts.Rows[e.RowIndex].Cells["Price"].Value.ToString();
             }
         }
+
+        private void ProductForm_Load(object sender, EventArgs e)
+        {
+
+        }
+
+
     }
 }

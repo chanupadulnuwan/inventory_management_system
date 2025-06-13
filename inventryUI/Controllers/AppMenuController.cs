@@ -1,6 +1,7 @@
 ﻿using inventryUI.Views;
 using Menu;
 using System.Windows.Forms;
+using WinFormsApp1;
 
 namespace inventryUI.Controllers
 {
@@ -15,7 +16,7 @@ namespace inventryUI.Controllers
             // Wire up events directly from the form
             _view.btnManageProducts.Click += (s, e) => OpenProductForm();
             _view.btnReports.Click += (s, e) => OpenReportForm();
-            _view.btnPurchases.Click += (s, e) => ShowNotImplemented("Purchases");
+            _view.btnPurchases.Click += (s, e) => OpenPurchaseOrderForm();
 
             // 🔁 REPLACED this line:
             // _view.btnSuppliers.Click += (s, e) => ShowNotImplemented("Suppliers");
@@ -46,6 +47,14 @@ namespace inventryUI.Controllers
         private void ShowNotImplemented(string featureName)
         {
             MessageBox.Show($"{featureName} feature not implemented yet.", "Info", MessageBoxButtons.OK, MessageBoxIcon.Information);
+        }
+
+        private void OpenPurchaseOrderForm()
+        {
+            using (var form = new PurchaseOrderForm())
+            {
+                form.ShowDialog(_view);
+            }
         }
     }
 }

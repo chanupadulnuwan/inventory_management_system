@@ -183,6 +183,7 @@
             Controls.Add(label1);
             Name = "ProductForm";
             Text = "ProductForm";
+            Load += ProductForm_Load;
             ((System.ComponentModel.ISupportInitialize)dgvProducts).EndInit();
             ResumeLayout(false);
             PerformLayout();
@@ -206,5 +207,6 @@
         public TextBox txtSearch;
         public Button btnSearch;
         public DataGridView dgvProducts;
+
     }
 }
