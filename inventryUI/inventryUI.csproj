@@ -1,4 +1,4 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
+<Project Sdk="Microsoft.NET.Sdk">
 
 	<PropertyGroup>
 		<OutputType>WinExe</OutputType>
@@ -9,6 +9,7 @@
 	</PropertyGroup>
 
 	<ItemGroup>
+	  <PackageReference Include="MySql.Data" Version="9.3.0" />
 	  <Compile Update="Views\PurchaseOrderForm.cs" />
 	  <Compile Update="Views\SupplierForm.cs">
 	    <SubType>Form</SubType>
