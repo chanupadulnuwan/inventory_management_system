@@ -20,7 +20,8 @@ namespace Menu
             btnLogout.Click += BtnLogout_Click;
             btnSuppliers.Click += btnSuppliers_Click;
             btnPurchases.Click += btnPurchases_Click;
-            btnUser.Click += btnUser_Click; // ✅ Properly wired here
+            btnUser.Click += btnUser_Click;
+            btnNotification.Click += btnNotification_Click; // Added friend's feature
         }
 
         private void AppMenuForm_Load(object sender, EventArgs e)
@@ -56,7 +57,13 @@ namespace Menu
         private void btnUser_Click(object sender, EventArgs e)
         {
             UserForm userForm = new UserForm();
-            userForm.Show(); // ✅ Correct method and object
+            userForm.Show();
+        }
+
+        private void btnNotification_Click(object sender, EventArgs e)
+        {
+            // Friend's feature logic here — update with actual functionality if needed
+            MessageBox.Show("Notifications clicked.");
         }
 
         private void label1_Click(object sender, EventArgs e)
@@ -66,7 +73,7 @@ namespace Menu
 
         private void AppMenuForm_Load_1(object sender, EventArgs e)
         {
-            // Can be removed if unused
+            // Optional - safe to keep or remove
         }
     }
 }

@@ -130,6 +130,7 @@ namespace Menu
             btnNotification.TabIndex = 9;
             btnNotification.Text = "🔔 Notifications";
             btnNotification.UseVisualStyleBackColor = true;
+            btnNotification.Click += btnNotification_Click;
             // 
             // AppMenuForm
             // 
