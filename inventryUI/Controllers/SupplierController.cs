@@ -1,6 +1,7 @@
-﻿using inventryUI.Models;
+using inventryUI.Models;
 using inventryUI.Views;
 using MySql.Data.MySqlClient;
+using System;
 using System.Collections.Generic;
 using System.Data.Common;
 using System.Linq;
@@ -27,9 +28,7 @@ namespace inventryUI.Controllers
             view.DisplaySuppliers(suppliers);
         }
 
-
         public bool AddSupplier(string name, string contact, string product)
-
         {
             // Check for duplicate name
             var sameName = suppliers.FirstOrDefault(s => s.Name.Equals(name, StringComparison.OrdinalIgnoreCase));
@@ -47,24 +46,23 @@ namespace inventryUI.Controllers
                 return false;
             }
 
-            // Add supplier if all checks pass
-           
-            // ✅ NEW: Save to MySQL instead of in-memory list
+            // ✅ Save to MySQL
             AddSupplierToDatabase(name, contact, product);
-            LoadSuppliers(); // This will now read from DB and refresh the table
-
+            LoadSuppliers(); // refresh from DB
             return true;
         }
+
         public List<Supplier> SearchSuppliers(string query)
         {
             if (string.IsNullOrWhiteSpace(query))
                 return suppliers;
 
             return suppliers.Where(s =>
-                s.Name.ToLower().Contains(query) ||
+                s.Name.ToLower().Contains(query.ToLower()) ||
                 s.SupplierID.ToString().Contains(query)
             ).ToList();
         }
+
         public void AddSupplierToDatabase(string name, string contact, string product)
         {
             using (var conn = DBConnection.GetConnection())
@@ -108,14 +106,6 @@ namespace inventryUI.Controllers
             return list;
         }
 
-
-
-
-
-
-
-
-
         public void UpdateSupplier(Supplier updatedSupplier)
         {
             var existing = suppliers.FirstOrDefault(s => s.SupplierID == updatedSupplier.SupplierID);
@@ -138,8 +128,5 @@ namespace inventryUI.Controllers
                 LoadSuppliers();
             }
         }
-       
-
-
     }
 }
