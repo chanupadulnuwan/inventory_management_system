@@ -42,20 +42,25 @@ namespace Menu
         {
 
         }
-private void AppMenuForm_Load_1(object sender, EventArgs e)
-{
-}
+        private void AppMenuForm_Load_1(object sender, EventArgs e)
+        {
+        }
 
-private void btnSuppliers_Click(object sender, EventArgs e)
-{
-    SupplierForm supplierForm = new SupplierForm();
-    supplierForm.ShowDialog(); // Modal — blocks until closed
-}
+        private void btnSuppliers_Click(object sender, EventArgs e)
+        {
+            SupplierForm supplierForm = new SupplierForm();
+            supplierForm.ShowDialog(); // Modal — blocks until closed
+        }
 
         private void btnPurchases_Click(object sender, EventArgs e)
         {
             PurchaseOrderForm purchaseForm = new PurchaseOrderForm();
             purchaseForm.Show();
+        }
+
+        private void btnNotification_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

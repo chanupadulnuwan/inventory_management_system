@@ -164,7 +164,40 @@ namespace inventryUI.Controllers
             _view.txtPrice.Clear();
         }
 
+        private bool IsProductExists(string sku)
+        {
+            using (var conn = DBConnection.GetConnection())
+            {
+                conn.Open();
+                var cmd = new MySqlCommand("SELECT COUNT(*) FROM products WHERE SKU = @sku", conn);
+                cmd.Parameters.AddWithValue("@sku", sku);
+                return Convert.ToInt32(cmd.ExecuteScalar()) > 0;
+            }
+        }
 
+        private List<Product> GetAllProductsFromDB()
+        {
+            var list = new List<Product>();
 
+            using (var conn = DBConnection.GetConnection())
+            {
+                conn.Open();
+                var cmd = new MySqlCommand("SELECT * FROM products", conn);
+                var reader = cmd.ExecuteReader();
+
+                while (reader.Read())
+                {
+                    list.Add(new Product
+                    {
+                        SKU = reader["SKU"].ToString(),
+                        Name = reader["ProductName"].ToString(),
+                        Quantity = Convert.ToInt32(reader["Quantity"]),
+                        Price = Convert.ToDecimal(reader["Price"])
+                    });
+                }
+            }
+
+            return list;
+        }
     }
 }
