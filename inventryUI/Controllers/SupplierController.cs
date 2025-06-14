@@ -1,6 +1,9 @@
-﻿using inventryUI.Models;
+using inventryUI.Models;
 using inventryUI.Views;
+using MySql.Data.MySqlClient;
+using System;
 using System.Collections.Generic;
+using System.Data.Common;
 using System.Linq;
 
 namespace inventryUI.Controllers
@@ -21,10 +24,11 @@ namespace inventryUI.Controllers
 
         public void LoadSuppliers()
         {
+            var suppliers = GetAllSuppliersFromDatabase();
             view.DisplaySuppliers(suppliers);
         }
 
-        public bool AddSupplier(string name, string contact)
+        public bool AddSupplier(string name, string contact, string product)
         {
             // Check for duplicate name
             var sameName = suppliers.FirstOrDefault(s => s.Name.Equals(name, StringComparison.OrdinalIgnoreCase));
@@ -42,22 +46,65 @@ namespace inventryUI.Controllers
                 return false;
             }
 
-            // Add supplier if all checks pass
-            Supplier supplier = new Supplier
-            {
-                SupplierID = nextId++,
-                Name = name,
-                ContactInfo = contact
-            };
-
-            suppliers.Add(supplier);
-            LoadSuppliers();
+            // ✅ Save to MySQL
+            AddSupplierToDatabase(name, contact, product);
+            LoadSuppliers(); // refresh from DB
             return true;
         }
 
+        public List<Supplier> SearchSuppliers(string query)
+        {
+            if (string.IsNullOrWhiteSpace(query))
+                return suppliers;
 
+            return suppliers.Where(s =>
+                s.Name.ToLower().Contains(query.ToLower()) ||
+                s.SupplierID.ToString().Contains(query)
+            ).ToList();
+        }
 
+        public void AddSupplierToDatabase(string name, string contact, string product)
+        {
+            using (var conn = DBConnection.GetConnection())
+            {
+                conn.Open();
+                string query = "INSERT INTO suppliers (Name, ContactInfo, Product) VALUES (@name, @contact, @product)";
+                using (var cmd = new MySqlCommand(query, conn))
+                {
+                    cmd.Parameters.AddWithValue("@name", name);
+                    cmd.Parameters.AddWithValue("@contact", contact);
+                    cmd.Parameters.AddWithValue("@product", product);
+                    cmd.ExecuteNonQuery();
+                }
+            }
+        }
 
+        public List<Supplier> GetAllSuppliersFromDatabase()
+        {
+            var list = new List<Supplier>();
+
+            using (var conn = DBConnection.GetConnection())
+            {
+                conn.Open();
+                string query = "SELECT * FROM suppliers";
+                using (var cmd = new MySqlCommand(query, conn))
+                using (var reader = cmd.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        list.Add(new Supplier
+                        {
+                            SupplierID = reader.GetInt32("SupplierID"),
+                            Name = reader.GetString("Name"),
+                            ContactInfo = reader.GetInt32("ContactInfo").ToString(), // Convert int to string
+                            Product = reader.GetString("Product")
+                        });
+                    }
+                }
+            }
+
+            return list;
+        }
 
         public void UpdateSupplier(Supplier updatedSupplier)
         {
@@ -66,6 +113,8 @@ namespace inventryUI.Controllers
             {
                 existing.Name = updatedSupplier.Name;
                 existing.ContactInfo = updatedSupplier.ContactInfo;
+                existing.Product = updatedSupplier.Product;
+
                 LoadSuppliers();
             }
         }

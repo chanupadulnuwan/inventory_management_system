@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Windows.Forms;
 using inventryUI.Controllers;
-using Menu; 
+using Menu;
 
 namespace inventryUI.Views
 {
@@ -18,7 +18,7 @@ namespace inventryUI.Views
             this.Load += ProductForm_Load;
             this.Resize += ProductForm_Resize;
             dgvProducts.CellClick += dgvProducts_CellClick;
-            btnBack.Click += btnBack_Click; // Added event hook for Back
+            btnBack.Click += btnBack_Click; // Event hook for Back button
         }
 
         // Center the title label when form loads
@@ -33,13 +33,11 @@ namespace inventryUI.Views
             CenterTitleLabel();
         }
 
-        // Center label1 (the title)
         private void CenterTitleLabel()
         {
             label1.Left = (this.ClientSize.Width - label1.Width) / 2;
         }
 
-        // Auto-fill fields when selecting a row
         private void dgvProducts_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             if (e.RowIndex >= 0 && dgvProducts.Rows[e.RowIndex].Cells["SKU"].Value != null)
@@ -51,7 +49,6 @@ namespace inventryUI.Views
             }
         }
 
-        
         private void btnBack_Click(object sender, EventArgs e)
         {
             this.Hide();
@@ -61,7 +58,7 @@ namespace inventryUI.Views
 
         private void label1_Click(object sender, EventArgs e)
         {
-            
+            // Optional — handle label clicks if needed
         }
 
         private void btnEdit_Click(object sender, EventArgs e)
