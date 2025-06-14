@@ -38,9 +38,11 @@
             lblName = new Label();
             lblContact = new Label();
             backbtn = new Button();
+            LabelProduct = new Label();
+            textProduct = new TextBox();
+            txtSearch = new TextBox();
+            btnSearch = new Button();
             ((System.ComponentModel.ISupportInitialize)dgvSuppliers).BeginInit();
-            this.backbtn.Click += new System.EventHandler(this.backbtn_Click);
-
             SuspendLayout();
             // 
             // txtName
@@ -49,6 +51,7 @@
             txtName.Name = "txtName";
             txtName.Size = new Size(125, 27);
             txtName.TabIndex = 0;
+            txtName.TextChanged += txtName_TextChanged;
             // 
             // txtContact
             // 
@@ -56,10 +59,11 @@
             txtContact.Name = "txtContact";
             txtContact.Size = new Size(125, 27);
             txtContact.TabIndex = 1;
+            txtContact.TextChanged += txtContact_TextChanged;
             // 
             // btnAdd
             // 
-            btnAdd.Location = new Point(440, 138);
+            btnAdd.Location = new Point(397, 138);
             btnAdd.Name = "btnAdd";
             btnAdd.Size = new Size(94, 29);
             btnAdd.TabIndex = 2;
@@ -68,7 +72,7 @@
             // 
             // btnUpdate
             // 
-            btnUpdate.Location = new Point(568, 138);
+            btnUpdate.Location = new Point(532, 138);
             btnUpdate.Name = "btnUpdate";
             btnUpdate.Size = new Size(94, 29);
             btnUpdate.TabIndex = 3;
@@ -77,7 +81,7 @@
             // 
             // btnDelete
             // 
-            btnDelete.Location = new Point(694, 138);
+            btnDelete.Location = new Point(669, 138);
             btnDelete.Name = "btnDelete";
             btnDelete.Size = new Size(94, 29);
             btnDelete.TabIndex = 4;
@@ -119,12 +123,49 @@
             backbtn.TabIndex = 8;
             backbtn.Text = "Back";
             backbtn.UseVisualStyleBackColor = true;
+            backbtn.Click += backbtn_Click;
+            // 
+            // LabelProduct
+            // 
+            LabelProduct.AutoSize = true;
+            LabelProduct.Location = new Point(23, 138);
+            LabelProduct.Name = "LabelProduct";
+            LabelProduct.Size = new Size(60, 20);
+            LabelProduct.TabIndex = 9;
+            LabelProduct.Text = "Product";
+            // 
+            // textProduct
+            // 
+            textProduct.Location = new Point(123, 135);
+            textProduct.Name = "textProduct";
+            textProduct.Size = new Size(125, 27);
+            textProduct.TabIndex = 10;
+            // 
+            // txtSearch
+            // 
+            txtSearch.Location = new Point(512, 77);
+            txtSearch.Name = "txtSearch";
+            txtSearch.Size = new Size(125, 27);
+            txtSearch.TabIndex = 11;
+            // 
+            // btnSearch
+            // 
+            btnSearch.Location = new Point(669, 77);
+            btnSearch.Name = "btnSearch";
+            btnSearch.Size = new Size(94, 29);
+            btnSearch.TabIndex = 12;
+            btnSearch.Text = "Search";
+            btnSearch.UseVisualStyleBackColor = true;
             // 
             // SupplierForm
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(800, 450);
+            Controls.Add(btnSearch);
+            Controls.Add(txtSearch);
+            Controls.Add(textProduct);
+            Controls.Add(LabelProduct);
             Controls.Add(backbtn);
             Controls.Add(lblContact);
             Controls.Add(lblName);
@@ -153,5 +194,9 @@
         private Label lblName;
         private Label lblContact;
         private Button backbtn;
+        private Label LabelProduct;
+        private TextBox textProduct;
+        private TextBox txtSearch;
+        private Button btnSearch;
     }
 }

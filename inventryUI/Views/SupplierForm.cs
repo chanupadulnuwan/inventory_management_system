@@ -6,10 +6,11 @@ using inventryUI.Models;
 using inventryUI.Controllers;
 using inventryUI.Views;
 using Menu;
+using System.Xml.Linq;
 
 namespace inventryUI.Views
 {
-    public partial class SupplierForm : Form, ISupplierView
+    public partial class SupplierForm
     {
         private SupplierController presenter;
 
@@ -21,6 +22,8 @@ namespace inventryUI.Views
             btnAdd.Click += BtnAdd_Click;
             btnUpdate.Click += BtnUpdate_Click;
             btnDelete.Click += BtnDelete_Click;
+            btnSearch.Click += btnSearch_Click;
+
 
             // Set up DataGridView behavior
             dgvSuppliers.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
@@ -36,19 +39,35 @@ namespace inventryUI.Views
         {
             string name = txtName.Text.Trim();
             string contact = txtContact.Text.Trim();
+            string product = textProduct.Text.Trim();
 
-            if (string.IsNullOrEmpty(name) || string.IsNullOrEmpty(contact))
+
+            if (string.IsNullOrWhiteSpace(name) || string.IsNullOrWhiteSpace(contact) || string.IsNullOrWhiteSpace(product))
             {
-                MessageBox.Show("Please enter both name and contact info.");
+                MessageBox.Show("Please enter Name, Contact Info, and Product.", "Input Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
 
-            if (!IsValidInput(name, contact))
-                return;
 
-            presenter.AddSupplier(name, contact);
-            ClearFields();
+            if (!IsValidInput(name, contact, product))
+            {
+                MessageBox.Show("Input contains invalid characters or is too long.", "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            bool success = presenter.AddSupplier(name, contact, product);
+
+
+            if (success)
+            {
+                MessageBox.Show("Supplier added successfully.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                ClearFields();
+            }
+            // ? Duplicate messages are shown by presenter via view.ShowMessage(...)
         }
+
+
+
 
         private void BtnUpdate_Click(object sender, EventArgs e)
         {
@@ -63,8 +82,13 @@ namespace inventryUI.Views
             {
                 string name = txtName.Text.Trim();
                 string contact = txtContact.Text.Trim();
+                string product = textProduct.Text.Trim();
+                supplier.Product = product;
 
-                if (!IsValidInput(name, contact))
+
+
+                if (!IsValidInput(name, contact, product))
+
                     return;
 
                 supplier.Name = name;
@@ -89,6 +113,23 @@ namespace inventryUI.Views
                 ClearFields();
             }
         }
+        private void btnSearch_Click(object sender, EventArgs e)
+        {
+            string query = txtSearch.Text.Trim().ToLower();
+
+            var filteredSuppliers = presenter.SearchSuppliers(query);
+
+            if (filteredSuppliers.Count == 0)
+            {
+                MessageBox.Show("No supplier found.", "Search Result", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+
+            DisplaySuppliers(filteredSuppliers);
+        }
+
+
+
+
 
         public void DisplaySuppliers(List<Supplier> suppliers)
         {
@@ -108,9 +149,20 @@ namespace inventryUI.Views
         {
             txtName.Text = "";
             txtContact.Text = "";
+            textProduct.Text = "";
+
         }
 
-        private bool IsValidInput(string name, string contact)
+        public void ShowMessage(string message, string title, MessageBoxIcon icon)
+        {
+            MessageBox.Show(message, title, MessageBoxButtons.OK, icon);
+        }
+
+
+
+
+        private bool IsValidInput(string name, string contact, string product)
+
         {
             // Name must contain only letters and spaces
             if (!Regex.IsMatch(name, @"^[a-zA-Z\s]+$"))
@@ -125,6 +177,13 @@ namespace inventryUI.Views
                 MessageBox.Show("Contact info must include at least one number (e.g., phone or email).");
                 return false;
             }
+            // Product must contain only letters and spaces
+            if (!Regex.IsMatch(product, @"^[a-zA-Z\s]+$"))
+            {
+                MessageBox.Show("Product must contain only letters.", "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return false;
+            }
+
 
             return true;
         }
@@ -136,8 +195,20 @@ namespace inventryUI.Views
         private void backbtn_Click(object sender, EventArgs e)
         {
             this.Close();
-           
+
         }
 
+        private void txtName_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+        private void textProduct_TextChanged(object sender, EventArgs e)
+        {
+        }
+
+        private void txtContact_TextChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }
