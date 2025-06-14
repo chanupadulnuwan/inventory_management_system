@@ -42,12 +42,13 @@
             textProduct = new TextBox();
             txtSearch = new TextBox();
             btnSearch = new Button();
+            label1 = new Label();
             ((System.ComponentModel.ISupportInitialize)dgvSuppliers).BeginInit();
             SuspendLayout();
             // 
             // txtName
             // 
-            txtName.Location = new Point(123, 40);
+            txtName.Location = new Point(69, 112);
             txtName.Name = "txtName";
             txtName.Size = new Size(125, 27);
             txtName.TabIndex = 0;
@@ -55,7 +56,7 @@
             // 
             // txtContact
             // 
-            txtContact.Location = new Point(123, 83);
+            txtContact.Location = new Point(69, 301);
             txtContact.Name = "txtContact";
             txtContact.Size = new Size(125, 27);
             txtContact.TabIndex = 1;
@@ -63,35 +64,44 @@
             // 
             // btnAdd
             // 
-            btnAdd.Location = new Point(397, 138);
+            btnAdd.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
+            btnAdd.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold);
+            btnAdd.Location = new Point(512, 453);
             btnAdd.Name = "btnAdd";
-            btnAdd.Size = new Size(94, 29);
+            btnAdd.Size = new Size(104, 46);
             btnAdd.TabIndex = 2;
             btnAdd.Text = "Add";
             btnAdd.UseVisualStyleBackColor = true;
             // 
             // btnUpdate
             // 
-            btnUpdate.Location = new Point(532, 138);
+            btnUpdate.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
+            btnUpdate.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold);
+            btnUpdate.Location = new Point(645, 453);
             btnUpdate.Name = "btnUpdate";
-            btnUpdate.Size = new Size(94, 29);
+            btnUpdate.Size = new Size(97, 46);
             btnUpdate.TabIndex = 3;
             btnUpdate.Text = "Update";
             btnUpdate.UseVisualStyleBackColor = true;
             // 
             // btnDelete
             // 
-            btnDelete.Location = new Point(669, 138);
+            btnDelete.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
+            btnDelete.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold);
+            btnDelete.Location = new Point(773, 453);
             btnDelete.Name = "btnDelete";
-            btnDelete.Size = new Size(94, 29);
+            btnDelete.Size = new Size(94, 46);
             btnDelete.TabIndex = 4;
             btnDelete.Text = "Delete";
             btnDelete.UseVisualStyleBackColor = true;
             // 
             // dgvSuppliers
             // 
+            dgvSuppliers.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+            dgvSuppliers.BackgroundColor = SystemColors.InactiveBorder;
             dgvSuppliers.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dgvSuppliers.Location = new Point(256, 173);
+            dgvSuppliers.GridColor = SystemColors.InactiveCaptionText;
+            dgvSuppliers.Location = new Point(335, 167);
             dgvSuppliers.Name = "dgvSuppliers";
             dgvSuppliers.RowHeadersWidth = 51;
             dgvSuppliers.Size = new Size(532, 257);
@@ -100,26 +110,30 @@
             // lblName
             // 
             lblName.AutoSize = true;
-            lblName.Location = new Point(23, 40);
+            lblName.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold);
+            lblName.Location = new Point(23, 57);
             lblName.Name = "lblName";
-            lblName.Size = new Size(52, 20);
+            lblName.Size = new Size(71, 28);
             lblName.TabIndex = 6;
             lblName.Text = "Name:";
             // 
             // lblContact
             // 
             lblContact.AutoSize = true;
-            lblContact.Location = new Point(23, 90);
+            lblContact.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold);
+            lblContact.Location = new Point(23, 153);
             lblContact.Name = "lblContact";
-            lblContact.Size = new Size(93, 20);
+            lblContact.Size = new Size(129, 28);
             lblContact.TabIndex = 7;
             lblContact.Text = "Contact Info:";
             // 
             // backbtn
             // 
-            backbtn.Location = new Point(694, 21);
+            backbtn.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+            backbtn.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold);
+            backbtn.Location = new Point(773, 12);
             backbtn.Name = "backbtn";
-            backbtn.Size = new Size(94, 29);
+            backbtn.Size = new Size(94, 35);
             backbtn.TabIndex = 8;
             backbtn.Text = "Back";
             backbtn.UseVisualStyleBackColor = true;
@@ -128,40 +142,57 @@
             // LabelProduct
             // 
             LabelProduct.AutoSize = true;
-            LabelProduct.Location = new Point(23, 138);
+            LabelProduct.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold);
+            LabelProduct.Location = new Point(23, 259);
             LabelProduct.Name = "LabelProduct";
-            LabelProduct.Size = new Size(60, 20);
+            LabelProduct.Size = new Size(83, 28);
             LabelProduct.TabIndex = 9;
             LabelProduct.Text = "Product";
             // 
             // textProduct
             // 
-            textProduct.Location = new Point(123, 135);
+            textProduct.Location = new Point(69, 202);
             textProduct.Name = "textProduct";
             textProduct.Size = new Size(125, 27);
             textProduct.TabIndex = 10;
             // 
             // txtSearch
             // 
-            txtSearch.Location = new Point(512, 77);
+            txtSearch.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+            txtSearch.Location = new Point(554, 112);
             txtSearch.Name = "txtSearch";
-            txtSearch.Size = new Size(125, 27);
+            txtSearch.Size = new Size(188, 27);
             txtSearch.TabIndex = 11;
             // 
             // btnSearch
             // 
-            btnSearch.Location = new Point(669, 77);
+            btnSearch.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+            btnSearch.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold);
+            btnSearch.Location = new Point(773, 105);
             btnSearch.Name = "btnSearch";
-            btnSearch.Size = new Size(94, 29);
+            btnSearch.Size = new Size(94, 38);
             btnSearch.TabIndex = 12;
             btnSearch.Text = "Search";
             btnSearch.UseVisualStyleBackColor = true;
+            // 
+            // label1
+            // 
+            label1.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
+            label1.AutoSize = true;
+            label1.Font = new Font("Modern No. 20", 19.7999973F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label1.Location = new Point(311, 9);
+            label1.Name = "label1";
+            label1.Size = new Size(325, 34);
+            label1.TabIndex = 13;
+            label1.Text = "Supplier Management";
             // 
             // SupplierForm
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(800, 450);
+            BackColor = Color.LightSteelBlue;
+            ClientSize = new Size(898, 529);
+            Controls.Add(label1);
             Controls.Add(btnSearch);
             Controls.Add(txtSearch);
             Controls.Add(textProduct);
@@ -198,5 +229,6 @@
         private TextBox textProduct;
         private TextBox txtSearch;
         private Button btnSearch;
+        private Label label1;
     }
 }

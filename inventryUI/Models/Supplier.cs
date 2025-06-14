@@ -12,6 +12,6 @@ namespace inventryUI.Models
         public string Name { get; set; }
         public string ContactInfo { get; set; }
         public string Product { get; set; }
-
     }
+
 }

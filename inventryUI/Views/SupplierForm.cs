@@ -24,6 +24,10 @@ namespace inventryUI.Views
             btnDelete.Click += BtnDelete_Click;
             btnSearch.Click += btnSearch_Click;
 
+            // Center the label title
+            label1.Dock = DockStyle.Top;
+            label1.TextAlign = ContentAlignment.MiddleCenter;
+            label1.Font = new Font("Arial", 18, FontStyle.Bold);
 
             // Set up DataGridView behavior
             dgvSuppliers.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
@@ -41,13 +45,11 @@ namespace inventryUI.Views
             string contact = txtContact.Text.Trim();
             string product = textProduct.Text.Trim();
 
-
             if (string.IsNullOrWhiteSpace(name) || string.IsNullOrWhiteSpace(contact) || string.IsNullOrWhiteSpace(product))
             {
                 MessageBox.Show("Please enter Name, Contact Info, and Product.", "Input Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
-
 
             if (!IsValidInput(name, contact, product))
             {
@@ -57,17 +59,12 @@ namespace inventryUI.Views
 
             bool success = presenter.AddSupplier(name, contact, product);
 
-
             if (success)
             {
                 MessageBox.Show("Supplier added successfully.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 ClearFields();
             }
-            // ? Duplicate messages are shown by presenter via view.ShowMessage(...)
         }
-
-
-
 
         private void BtnUpdate_Click(object sender, EventArgs e)
         {
@@ -83,16 +80,12 @@ namespace inventryUI.Views
                 string name = txtName.Text.Trim();
                 string contact = txtContact.Text.Trim();
                 string product = textProduct.Text.Trim();
-                supplier.Product = product;
 
-
-
-                if (!IsValidInput(name, contact, product))
-
-                    return;
+                if (!IsValidInput(name, contact, product)) return;
 
                 supplier.Name = name;
                 supplier.ContactInfo = contact;
+                supplier.Product = product;
                 presenter.UpdateSupplier(supplier);
                 ClearFields();
             }
@@ -113,10 +106,10 @@ namespace inventryUI.Views
                 ClearFields();
             }
         }
+
         private void btnSearch_Click(object sender, EventArgs e)
         {
             string query = txtSearch.Text.Trim().ToLower();
-
             var filteredSuppliers = presenter.SearchSuppliers(query);
 
             if (filteredSuppliers.Count == 0)
@@ -126,10 +119,6 @@ namespace inventryUI.Views
 
             DisplaySuppliers(filteredSuppliers);
         }
-
-
-
-
 
         public void DisplaySuppliers(List<Supplier> suppliers)
         {
@@ -150,7 +139,6 @@ namespace inventryUI.Views
             txtName.Text = "";
             txtContact.Text = "";
             textProduct.Text = "";
-
         }
 
         public void ShowMessage(string message, string title, MessageBoxIcon icon)
@@ -158,57 +146,38 @@ namespace inventryUI.Views
             MessageBox.Show(message, title, MessageBoxButtons.OK, icon);
         }
 
-
-
-
         private bool IsValidInput(string name, string contact, string product)
-
         {
-            // Name must contain only letters and spaces
             if (!Regex.IsMatch(name, @"^[a-zA-Z\s]+$"))
             {
                 MessageBox.Show("Name must contain only letters.");
                 return false;
             }
 
-            // Contact must contain at least one number (e.g., phone or email with number)
             if (!Regex.IsMatch(contact, @"\d"))
             {
                 MessageBox.Show("Contact info must include at least one number (e.g., phone or email).");
                 return false;
             }
-            // Product must contain only letters and spaces
+
             if (!Regex.IsMatch(product, @"^[a-zA-Z\s]+$"))
             {
                 MessageBox.Show("Product must contain only letters.", "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return false;
             }
 
-
             return true;
         }
 
-        private void SupplierForm_Load(object sender, EventArgs e)
-        {
+        private void SupplierForm_Load(object sender, EventArgs e) { }
 
-        }
         private void backbtn_Click(object sender, EventArgs e)
         {
             this.Close();
-
         }
 
-        private void txtName_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-        private void textProduct_TextChanged(object sender, EventArgs e)
-        {
-        }
-
-        private void txtContact_TextChanged(object sender, EventArgs e)
-        {
-
-        }
+        private void txtName_TextChanged(object sender, EventArgs e) { }
+        private void textProduct_TextChanged(object sender, EventArgs e) { }
+        private void txtContact_TextChanged(object sender, EventArgs e) { }
     }
 }
