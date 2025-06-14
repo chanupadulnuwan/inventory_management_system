@@ -19,17 +19,18 @@
         {
             tabReports = new TabControl();
             tabStockReport = new TabPage();
-            tabOrderHistory = new TabPage();
-            tabTopItems = new TabPage();
             dgvStockReport = new DataGridView();
+            tabOrderHistory = new TabPage();
             dgvOrderHistory = new DataGridView();
+            tabTopItems = new TabPage();
             dgvTopItems = new DataGridView();
+            btnBack = new Button();
             tabReports.SuspendLayout();
             tabStockReport.SuspendLayout();
-            tabOrderHistory.SuspendLayout();
-            tabTopItems.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dgvStockReport).BeginInit();
+            tabOrderHistory.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dgvOrderHistory).BeginInit();
+            tabTopItems.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dgvTopItems).BeginInit();
             SuspendLayout();
             // 
@@ -55,6 +56,22 @@
             tabStockReport.Text = "Stock Report";
             tabStockReport.UseVisualStyleBackColor = true;
             // 
+            // dgvStockReport
+            // 
+            dgvStockReport.AllowUserToAddRows = false;
+            dgvStockReport.AllowUserToDeleteRows = false;
+            dgvStockReport.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            dgvStockReport.BackgroundColor = SystemColors.ActiveCaption;
+            dgvStockReport.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dgvStockReport.Location = new Point(6, 6);
+            dgvStockReport.Name = "dgvStockReport";
+            dgvStockReport.ReadOnly = true;
+            dgvStockReport.RowHeadersVisible = false;
+            dgvStockReport.RowHeadersWidth = 51;
+            dgvStockReport.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+            dgvStockReport.Size = new Size(666, 284);
+            dgvStockReport.TabIndex = 0;
+            // 
             // tabOrderHistory
             // 
             tabOrderHistory.Controls.Add(dgvOrderHistory);
@@ -65,31 +82,6 @@
             tabOrderHistory.TabIndex = 1;
             tabOrderHistory.Text = "Order History";
             tabOrderHistory.UseVisualStyleBackColor = true;
-            // 
-            // tabTopItems
-            // 
-            tabTopItems.Controls.Add(dgvTopItems);
-            tabTopItems.Location = new Point(4, 29);
-            tabTopItems.Name = "tabTopItems";
-            tabTopItems.Size = new Size(678, 296);
-            tabTopItems.TabIndex = 2;
-            tabTopItems.Text = "Top Ordered Items";
-            tabTopItems.UseVisualStyleBackColor = true;
-            // 
-            // dgvStockReport
-            // 
-            dgvStockReport.AllowUserToAddRows = false;
-            dgvStockReport.AllowUserToDeleteRows = false;
-            dgvStockReport.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
-            dgvStockReport.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dgvStockReport.Location = new Point(6, 6);
-            dgvStockReport.Name = "dgvStockReport";
-            dgvStockReport.ReadOnly = true;
-            dgvStockReport.RowHeadersVisible = false;
-            dgvStockReport.RowHeadersWidth = 51;
-            dgvStockReport.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-            dgvStockReport.Size = new Size(666, 284);
-            dgvStockReport.TabIndex = 0;
             // 
             // dgvOrderHistory
             // 
@@ -106,6 +98,16 @@
             dgvOrderHistory.Size = new Size(666, 284);
             dgvOrderHistory.TabIndex = 0;
             // 
+            // tabTopItems
+            // 
+            tabTopItems.Controls.Add(dgvTopItems);
+            tabTopItems.Location = new Point(4, 29);
+            tabTopItems.Name = "tabTopItems";
+            tabTopItems.Size = new Size(678, 296);
+            tabTopItems.TabIndex = 2;
+            tabTopItems.Text = "Top Ordered Items";
+            tabTopItems.UseVisualStyleBackColor = true;
+            // 
             // dgvTopItems
             // 
             dgvTopItems.AllowUserToAddRows = false;
@@ -121,20 +123,33 @@
             dgvTopItems.Size = new Size(659, 290);
             dgvTopItems.TabIndex = 0;
             // 
+            // btnBack
+            // 
+            btnBack.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+            btnBack.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            btnBack.Location = new Point(692, 12);
+            btnBack.Name = "btnBack";
+            btnBack.Size = new Size(94, 38);
+            btnBack.TabIndex = 1;
+            btnBack.Text = "Back";
+            btnBack.UseVisualStyleBackColor = true;
+            // 
             // ReportForm
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(800, 450);
+            BackColor = Color.LightSteelBlue;
+            ClientSize = new Size(798, 450);
+            Controls.Add(btnBack);
             Controls.Add(tabReports);
             Name = "ReportForm";
             Text = "Reports";
             tabReports.ResumeLayout(false);
             tabStockReport.ResumeLayout(false);
-            tabOrderHistory.ResumeLayout(false);
-            tabTopItems.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)dgvStockReport).EndInit();
+            tabOrderHistory.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)dgvOrderHistory).EndInit();
+            tabTopItems.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)dgvTopItems).EndInit();
             ResumeLayout(false);
         }
@@ -149,5 +164,6 @@
         public DataGridView dgvStockReport;
         public DataGridView dgvOrderHistory;
         public DataGridView dgvTopItems;
+        private Button btnBack;
     }
 }
