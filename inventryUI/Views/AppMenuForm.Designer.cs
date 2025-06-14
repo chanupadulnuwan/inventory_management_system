@@ -1,4 +1,6 @@
-﻿namespace Menu
+﻿using inventryUI.Views;
+
+namespace Menu
 {
     partial class AppMenuForm
     {
@@ -18,6 +20,7 @@
             label1 = new Label();
             lblUserRole = new Label();
             btnManageProducts = new Button();
+            btnUser = new Button();
             btnSuppliers = new Button();
             btnPurchases = new Button();
             btnStockTracking = new Button();
@@ -40,12 +43,10 @@
             // 
             // lblUserRole
             // 
-            lblUserRole.AutoSize = true;
-            lblUserRole.Location = new Point(638, 32);
+            lblUserRole.Location = new Point(0, 0);
             lblUserRole.Name = "lblUserRole";
-            lblUserRole.Size = new Size(141, 20);
-            lblUserRole.TabIndex = 1;
-            lblUserRole.Text = "Logged in as: [Role]";
+            lblUserRole.Size = new Size(100, 23);
+            lblUserRole.TabIndex = 10;
             // 
             // btnManageProducts
             // 
@@ -55,6 +56,16 @@
             btnManageProducts.TabIndex = 2;
             btnManageProducts.Text = "Manage Products";
             btnManageProducts.UseVisualStyleBackColor = true;
+            // 
+            // btnUser
+            // 
+            btnUser.Location = new Point(592, 46);
+            btnUser.Name = "btnUser";
+            btnUser.Size = new Size(174, 29);
+            btnUser.TabIndex = 0;
+            btnUser.Text = "User Profile";
+            btnUser.UseVisualStyleBackColor = true;
+            btnUser.Click += btnUserProfile_Click; // ✅ Corrected event binding
             // 
             // btnSuppliers
             // 
@@ -133,6 +144,7 @@
             Controls.Add(btnPurchases);
             Controls.Add(btnSuppliers);
             Controls.Add(btnManageProducts);
+            Controls.Add(btnUser);
             Controls.Add(lblUserRole);
             Controls.Add(label1);
             Name = "AppMenuForm";
@@ -140,6 +152,12 @@
             Load += AppMenuForm_Load_1;
             ResumeLayout(false);
             PerformLayout();
+        }
+
+        private void btnUserProfile_Click(object sender, EventArgs e)
+        {
+            UserForm userForm = new UserForm();
+            userForm.Show(); // ✅ Working User Profile form
         }
 
         #endregion
@@ -154,5 +172,6 @@
         public Button btnBackup;
         public Button btnLogout;
         public Button btnNotification;
+        public Button btnUser;
     }
 }
