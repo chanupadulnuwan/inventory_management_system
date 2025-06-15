@@ -4,123 +4,123 @@
     {
         private System.ComponentModel.IContainer components = null;
 
+        private Label lblUsername;
+        private Label lblFullName;
+        private Label lblPassword;
+
+        public TextBox txtUsername;  // Changed from private → public
+        public TextBox txtFullName;  // Changed from private → public
+        public TextBox txtPassword;  // Changed from private → public
+
+        private Button btnEdit;
+        private Button btnDelete;
+
         protected override void Dispose(bool disposing)
         {
             if (disposing && (components != null))
                 components.Dispose();
+
             base.Dispose(disposing);
         }
 
-        #region Windows Form Designer generated code
-
         private void InitializeComponent()
         {
-            lblUsername = new Label();
-            txtUsername = new TextBox();
-            lblFullName = new Label();
-            txtFullName = new TextBox();
-            lblPassword = new Label();
-            txtPassword = new TextBox();
-            btnEdit = new Button();
-            btnDelete = new Button();
-            SuspendLayout();
+            this.lblUsername = new Label();
+            this.lblFullName = new Label();
+            this.lblPassword = new Label();
+            this.txtUsername = new TextBox();
+            this.txtFullName = new TextBox();
+            this.txtPassword = new TextBox();
+            this.btnEdit = new Button();
+            this.btnDelete = new Button();
+
+            this.SuspendLayout();
+
             // 
             // lblUsername
             // 
             lblUsername.AutoSize = true;
-            lblUsername.Location = new Point(20, 20);
+            lblUsername.Location = new System.Drawing.Point(100, 60);
             lblUsername.Name = "lblUsername";
-            lblUsername.Size = new Size(78, 20);
-            lblUsername.TabIndex = 0;
-            lblUsername.Text = "Username:";
-            // 
-            // txtUsername
-            // 
-            txtUsername.Location = new Point(120, 20);
-            txtUsername.Name = "txtUsername";
-            txtUsername.Size = new Size(180, 27);
-            txtUsername.TabIndex = 1;
+            lblUsername.Size = new System.Drawing.Size(78, 20);
+            lblUsername.Text = "Username";
+
             // 
             // lblFullName
             // 
             lblFullName.AutoSize = true;
-            lblFullName.Location = new Point(20, 60);
+            lblFullName.Location = new System.Drawing.Point(100, 120);
             lblFullName.Name = "lblFullName";
-            lblFullName.Size = new Size(79, 20);
-            lblFullName.TabIndex = 2;
-            lblFullName.Text = "Full Name:";
-            // 
-            // txtFullName
-            // 
-            txtFullName.Location = new Point(120, 60);
-            txtFullName.Name = "txtFullName";
-            txtFullName.Size = new Size(180, 27);
-            txtFullName.TabIndex = 3;
+            lblFullName.Size = new System.Drawing.Size(76, 20);
+            lblFullName.Text = "Full Name";
+
             // 
             // lblPassword
             // 
             lblPassword.AutoSize = true;
-            lblPassword.Location = new Point(20, 100);
+            lblPassword.Location = new System.Drawing.Point(100, 180);
             lblPassword.Name = "lblPassword";
-            lblPassword.Size = new Size(73, 20);
-            lblPassword.TabIndex = 4;
-            lblPassword.Text = "Password:";
+            lblPassword.Size = new System.Drawing.Size(70, 20);
+            lblPassword.Text = "Password";
+
+            // 
+            // txtUsername
+            // 
+            txtUsername.Location = new System.Drawing.Point(200, 57);
+            txtUsername.Name = "txtUsername";
+            txtUsername.Size = new System.Drawing.Size(300, 27);
+
+            // 
+            // txtFullName
+            // 
+            txtFullName.Location = new System.Drawing.Point(200, 117);
+            txtFullName.Name = "txtFullName";
+            txtFullName.Size = new System.Drawing.Size(300, 27);
+
             // 
             // txtPassword
             // 
-            txtPassword.Location = new Point(120, 100);
+            txtPassword.Location = new System.Drawing.Point(200, 177);
             txtPassword.Name = "txtPassword";
-            txtPassword.PasswordChar = '*';
-            txtPassword.Size = new Size(180, 27);
-            txtPassword.TabIndex = 5;
+            txtPassword.Size = new System.Drawing.Size(300, 27);
+            txtPassword.UseSystemPasswordChar = true;
+
             // 
             // btnEdit
             // 
-            btnEdit.Location = new Point(40, 150);
+            btnEdit.Location = new System.Drawing.Point(200, 240);
             btnEdit.Name = "btnEdit";
-            btnEdit.Size = new Size(100, 30);
-            btnEdit.TabIndex = 6;
-            btnEdit.Text = "Update";
+            btnEdit.Size = new System.Drawing.Size(120, 40);
+            btnEdit.Text = "Edit Profile";
             btnEdit.UseVisualStyleBackColor = true;
+
             // 
             // btnDelete
             // 
-            btnDelete.Location = new Point(170, 150);
+            btnDelete.Location = new System.Drawing.Point(380, 240);
             btnDelete.Name = "btnDelete";
-            btnDelete.Size = new Size(100, 30);
-            btnDelete.TabIndex = 7;
+            btnDelete.Size = new System.Drawing.Size(120, 40);
             btnDelete.Text = "Delete Account";
             btnDelete.UseVisualStyleBackColor = true;
+
             // 
             // UserForm
             // 
-            ClientSize = new Size(761, 375);
-            Controls.Add(btnDelete);
-            Controls.Add(btnEdit);
-            Controls.Add(txtPassword);
-            Controls.Add(lblPassword);
-            Controls.Add(txtFullName);
-            Controls.Add(lblFullName);
-            Controls.Add(txtUsername);
-            Controls.Add(lblUsername);
-            FormBorderStyle = FormBorderStyle.FixedSingle;
-            MaximizeBox = false;
-            Name = "UserForm";
-            StartPosition = FormStartPosition.CenterScreen;
-            Text = "My Profile";
-            ResumeLayout(false);
-            PerformLayout();
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
+            this.AutoScaleMode = AutoScaleMode.Font;
+            this.ClientSize = new System.Drawing.Size(600, 350);
+            this.Controls.Add(lblUsername);
+            this.Controls.Add(lblFullName);
+            this.Controls.Add(lblPassword);
+            this.Controls.Add(txtUsername);
+            this.Controls.Add(txtFullName);
+            this.Controls.Add(txtPassword);
+            this.Controls.Add(btnEdit);
+            this.Controls.Add(btnDelete);
+            this.Name = "UserForm";
+            this.Text = "User Profile";
+            this.ResumeLayout(false);
+            this.PerformLayout();
         }
-
-        #endregion
-
-        public System.Windows.Forms.Label lblUsername;
-        public System.Windows.Forms.TextBox txtUsername;
-        public System.Windows.Forms.Label lblFullName;
-        public System.Windows.Forms.TextBox txtFullName;
-        public System.Windows.Forms.Label lblPassword;
-        public System.Windows.Forms.TextBox txtPassword;
-        public System.Windows.Forms.Button btnEdit;
-        public System.Windows.Forms.Button btnDelete;
     }
 }

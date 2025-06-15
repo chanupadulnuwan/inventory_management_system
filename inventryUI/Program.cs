@@ -1,9 +1,7 @@
-using inventryUI;
-using Menu; // Namespace for AppMenuForm
-using System;
+﻿using System;
 using System.Windows.Forms;
 
-namespace InventoryUI
+namespace inventryUI
 {
     static class Program
     {
@@ -13,10 +11,8 @@ namespace InventoryUI
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
 
-            // Optional: Set user role manually for now if login isn't implemented yet
-            Session.CurrentUserRole = "Admin"; // or "User"
-
-            Application.Run(new AppMenuForm());
+            
+            Application.Run(new Views.LoginForm());
         }
     }
 }

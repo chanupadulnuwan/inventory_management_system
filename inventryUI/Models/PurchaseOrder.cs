@@ -12,7 +12,7 @@ namespace inventryUI.Models
             public string ProductName { get; set; }
             public string SupplierName { get; set; }
             public int Quantity { get; set; }
-            public string Status { get; set; } // "Pending", "Completed"
+            public string Status { get; set; } 
             public DateTime ExpectedDelivery { get; set; }
 
             public int MinStockThreshold { get; set; } = 5;

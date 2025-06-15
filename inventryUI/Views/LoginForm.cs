@@ -1,6 +1,7 @@
 ﻿using inventryUI.Controllers;
 using Menu;
 using System;
+using System.Drawing;
 using System.Windows.Forms;
 
 namespace inventryUI.Views
@@ -10,6 +11,8 @@ namespace inventryUI.Views
         public LoginForm()
         {
             InitializeComponent();
+            this.StartPosition = FormStartPosition.CenterScreen;
+            this.Size = new Size(800, 600);
         }
 
         private void btnLogin_Click(object sender, EventArgs e)
@@ -23,8 +26,8 @@ namespace inventryUI.Views
                 return;
             }
 
-            // Create a temporary controller (no form needed)
-            var controller = new UserController(viewSign: null); // Login only needs one side
+            // Create a temporary controller (no view needed for login check)
+            var controller = new UserController(viewSign: null);
 
             bool loginSuccess = controller.LoginValid(username, password);
 
@@ -32,11 +35,14 @@ namespace inventryUI.Views
             {
                 MessageBox.Show("Login successful!", "Welcome", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
-                // ✅ Show App Menu after successful login
-                var appMenu = new AppMenuForm();
-                appMenu.Show();
+                this.Hide(); // Hide login form first
 
-                this.Hide();
+                var appMenu = new AppMenuForm();
+                appMenu.StartPosition = FormStartPosition.CenterScreen;
+                appMenu.Size = new Size(800, 600);
+                appMenu.ShowDialog(); // Wait until app menu is closed
+
+                this.Close(); // Properly close login after main app ends
             }
             else
             {
@@ -46,9 +52,19 @@ namespace inventryUI.Views
 
         private void btnSignup_Click(object sender, EventArgs e)
         {
-            var signupForm = new SignupForm();
-            signupForm.Show();
             this.Hide();
+
+            var signupForm = new SignupForm();
+            signupForm.StartPosition = FormStartPosition.CenterScreen;
+            signupForm.Size = new Size(800, 600);
+            signupForm.ShowDialog();
+
+            this.Show(); // Show login again if signup form closes
+        }
+
+        private void label3_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

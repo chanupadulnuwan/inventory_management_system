@@ -18,22 +18,66 @@ namespace Menu
 
             this.Load += AppMenuForm_Load;
             btnLogout.Click += BtnLogout_Click;
-            btnSuppliers.Click += btnSuppliers_Click;
-            btnPurchases.Click += btnPurchases_Click;
-            btnUser.Click += btnUser_Click;
-            btnNotification.Click += btnNotification_Click; // Added friend's feature
+            btnSuppliers.Click += BtnSuppliers_Click;
+            btnPurchases.Click += BtnPurchases_Click;
+            btnUser.Click += BtnUser_Click;
+            btnReports.Click += BtnReports_Click;
+            btnStockTracking.Click += BtnStockTracking_Click;
+            btnManageProducts.Click += BtnManageProducts_Click;
+
+            this.StartPosition = FormStartPosition.CenterScreen;
+            this.Size = new System.Drawing.Size(900, 600);
         }
 
         private void AppMenuForm_Load(object sender, EventArgs e)
         {
             lblUserRole.Text = $"Logged in as: {Session.CurrentUserRole}";
+            ApplyPermissions(Session.CurrentUserRole);
+        }
 
-            if (Session.CurrentUserRole == "User")
+        private void ApplyPermissions(string role)
+        {
+            if (role == "Admin")
             {
-                btnPurchases.Enabled = false;
-                btnSuppliers.Enabled = false;
-                btnBackup.Enabled = false;
+                // No restrictions
+                EnableAllButtons();
             }
+            else if (role == "User")
+            {
+                EnableAllButtons();
+                btnSuppliers.Enabled = false;
+                btnPurchases.Enabled = false;
+            }
+            else if (role == "Supplier")
+            {
+                DisableAllButtons();
+                btnSuppliers.Enabled = true;
+                btnReports.Enabled = true;
+                btnUser.Enabled = true;
+                btnLogout.Enabled = true;
+            }
+        }
+
+        private void EnableAllButtons()
+        {
+            btnManageProducts.Enabled = true;
+            btnSuppliers.Enabled = true;
+            btnPurchases.Enabled = true;
+            btnStockTracking.Enabled = true;
+            btnReports.Enabled = true;
+            btnUser.Enabled = true;
+            btnLogout.Enabled = true;
+        }
+
+        private void DisableAllButtons()
+        {
+            btnManageProducts.Enabled = false;
+            btnSuppliers.Enabled = false;
+            btnPurchases.Enabled = false;
+            btnStockTracking.Enabled = false;
+            btnReports.Enabled = false;
+            btnUser.Enabled = false;
+            btnLogout.Enabled = false;
         }
 
         private void BtnLogout_Click(object sender, EventArgs e)
@@ -42,38 +86,54 @@ namespace Menu
             this.Close();
         }
 
-        private void btnSuppliers_Click(object sender, EventArgs e)
+        private void BtnSuppliers_Click(object sender, EventArgs e)
         {
-            SupplierForm supplierForm = new SupplierForm();
-            supplierForm.ShowDialog();
+            var form = new SupplierForm(this);
+            this.Hide();
+            form.ShowDialog();
+            this.Show();
         }
 
-        private void btnPurchases_Click(object sender, EventArgs e)
+        private void BtnPurchases_Click(object sender, EventArgs e)
         {
-            PurchaseOrderForm purchaseForm = new PurchaseOrderForm();
-            purchaseForm.Show();
+            var form = new PurchaseOrderForm();
+            form.ShowDialog();
         }
 
-        private void btnUser_Click(object sender, EventArgs e)
+        private void BtnUser_Click(object sender, EventArgs e)
         {
-            UserForm userForm = new UserForm();
-            userForm.Show();
+            var form = new UserForm();
+            this.Hide();
+            form.ShowDialog();
+            this.Show();
         }
 
-        private void btnNotification_Click(object sender, EventArgs e)
+        private void BtnReports_Click(object sender, EventArgs e)
         {
-            // Friend's feature logic here — update with actual functionality if needed
-            MessageBox.Show("Notifications clicked.");
+            var form = new ReportForm(this);
+            this.Hide();
+            form.ShowDialog();
+            this.Show();
+        }
+
+        private void BtnStockTracking_Click(object sender, EventArgs e)
+        {
+            var form = new StockForm(this);
+            this.Hide();
+            form.ShowDialog();
+            this.Show();
+        }
+
+        private void BtnManageProducts_Click(object sender, EventArgs e)
+        {
+            var form = new ProductForm(this);
+            this.Hide();
+            form.ShowDialog();
+            this.Show();
         }
 
         private void label1_Click(object sender, EventArgs e)
         {
-            // Optional - No logic needed
-        }
-
-        private void AppMenuForm_Load_1(object sender, EventArgs e)
-        {
-            // Optional - safe to keep or remove
         }
     }
 }

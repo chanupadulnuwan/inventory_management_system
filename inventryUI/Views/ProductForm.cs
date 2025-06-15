@@ -8,26 +8,29 @@ namespace inventryUI.Views
     public partial class ProductForm : Form
     {
         private ProductController _controller;
+        private Form _previousForm;
 
-        public ProductForm()
+        public ProductForm(Form previousForm)
         {
             InitializeComponent();
             _controller = new ProductController(this);
+            _previousForm = previousForm;
 
-            // Event hooks
             this.Load += ProductForm_Load;
             this.Resize += ProductForm_Resize;
             dgvProducts.CellClick += dgvProducts_CellClick;
-            btnBack.Click += btnBack_Click; // Event hook for Back button
+            btnBack.Click += btnBack_Click;
+
+            // Uniform window size
+            this.StartPosition = FormStartPosition.CenterScreen;
+            this.Size = new System.Drawing.Size(800, 600);
         }
 
-        // Center the title label when form loads
         private void ProductForm_Load(object sender, EventArgs e)
         {
             CenterTitleLabel();
         }
 
-        // Re-center on resize
         private void ProductForm_Resize(object sender, EventArgs e)
         {
             CenterTitleLabel();
@@ -51,14 +54,13 @@ namespace inventryUI.Views
 
         private void btnBack_Click(object sender, EventArgs e)
         {
-            this.Hide();
-            AppMenuForm menuForm = new AppMenuForm();
-            menuForm.Show();
+            this.Close(); // Close ProductForm
+            _previousForm.Show(); // Show the previous form again
         }
 
         private void label1_Click(object sender, EventArgs e)
         {
-            // Optional — handle label clicks if needed
+            // Optional: Handle label click
         }
 
         private void btnEdit_Click(object sender, EventArgs e)

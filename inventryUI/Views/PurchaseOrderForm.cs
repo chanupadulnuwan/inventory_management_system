@@ -46,7 +46,6 @@ namespace WinFormsApp1
             // 
             // label1
             // 
-            label1.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             label1.BackColor = Color.LightGray;
             label1.Font = new Font("Times New Roman", 14F, FontStyle.Bold);
             label1.ForeColor = Color.Black;
@@ -55,6 +54,7 @@ namespace WinFormsApp1
             label1.Size = new Size(247, 42);
             label1.TabIndex = 1;
             label1.Text = "Min Stock Threshold";
+            label1.Click += label1_Click;
             // 
             // nudMinThreshold
             // 
@@ -92,7 +92,7 @@ namespace WinFormsApp1
             // 
             // labelProduct
             // 
-            labelProduct.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+            labelProduct.Anchor = AnchorStyles.None;
             labelProduct.BackColor = Color.LightGray;
             labelProduct.Font = new Font("Times New Roman", 14F, FontStyle.Bold);
             labelProduct.ForeColor = Color.Black;
@@ -101,10 +101,11 @@ namespace WinFormsApp1
             labelProduct.Size = new Size(133, 40);
             labelProduct.TabIndex = 2;
             labelProduct.Text = "Product";
+            labelProduct.Click += labelProduct_Click;
             // 
             // labelSupplier
             // 
-            labelSupplier.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+            labelSupplier.Anchor = AnchorStyles.None;
             labelSupplier.BackColor = Color.LightGray;
             labelSupplier.Font = new Font("Times New Roman", 14F, FontStyle.Bold);
             labelSupplier.ForeColor = Color.Black;
@@ -113,10 +114,11 @@ namespace WinFormsApp1
             labelSupplier.Size = new Size(133, 39);
             labelSupplier.TabIndex = 3;
             labelSupplier.Text = "Supplier";
+            labelSupplier.Click += this.labelSupplier_Click;
             // 
             // labelQuantity
             // 
-            labelQuantity.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+            labelQuantity.Anchor = AnchorStyles.None;
             labelQuantity.BackColor = Color.LightGray;
             labelQuantity.Font = new Font("Times New Roman", 14F, FontStyle.Bold);
             labelQuantity.ForeColor = Color.Black;
@@ -140,7 +142,7 @@ namespace WinFormsApp1
             // 
             // cmbSupplier
             // 
-            cmbSupplier.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+            cmbSupplier.Anchor = AnchorStyles.None;
             cmbSupplier.FormattingEnabled = true;
             cmbSupplier.Items.AddRange(new object[] { "Reynolds", "Xerox", "Post-it", "Staples", "Expo" });
             cmbSupplier.Location = new Point(191, 440);
@@ -151,7 +153,7 @@ namespace WinFormsApp1
             // 
             // txtQuantity
             // 
-            txtQuantity.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+            txtQuantity.Anchor = AnchorStyles.None;
             txtQuantity.Location = new Point(191, 510);
             txtQuantity.Name = "txtQuantity";
             txtQuantity.Size = new Size(223, 27);
@@ -168,7 +170,7 @@ namespace WinFormsApp1
             // 
             // btnDeleteOrder
             // 
-            btnDeleteOrder.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+            btnDeleteOrder.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
             btnDeleteOrder.BackColor = SystemColors.ControlLight;
             btnDeleteOrder.Font = new Font("Times New Roman", 13.8F, FontStyle.Bold);
             btnDeleteOrder.Location = new Point(541, 597);
@@ -181,7 +183,7 @@ namespace WinFormsApp1
             // 
             // btnUpdateStatus
             // 
-            btnUpdateStatus.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+            btnUpdateStatus.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
             btnUpdateStatus.BackColor = SystemColors.ControlLight;
             btnUpdateStatus.Font = new Font("Times New Roman", 13.8F, FontStyle.Bold);
             btnUpdateStatus.Location = new Point(318, 597);
@@ -194,7 +196,7 @@ namespace WinFormsApp1
             // 
             // btnAddOrder
             // 
-            btnAddOrder.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+            btnAddOrder.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
             btnAddOrder.BackColor = SystemColors.ControlLight;
             btnAddOrder.Font = new Font("Times New Roman", 13.8F, FontStyle.Bold);
             btnAddOrder.Location = new Point(98, 597);
@@ -207,7 +209,6 @@ namespace WinFormsApp1
             // 
             // dataGridOrder
             // 
-            dataGridOrder.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             dataGridOrder.BackgroundColor = Color.LightSteelBlue;
             dataGridOrder.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dataGridOrder.Columns.AddRange(new DataGridViewColumn[] { OrderId, ProductName, SupplierName, Quantity, Status, ExpectedDelivery });
@@ -271,7 +272,7 @@ namespace WinFormsApp1
             // 
             // button1
             // 
-            button1.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+            button1.Anchor = AnchorStyles.Top | AnchorStyles.Right;
             button1.Font = new Font("Times New Roman", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
             button1.Location = new Point(902, 12);
             button1.Name = "button1";
@@ -283,7 +284,7 @@ namespace WinFormsApp1
             // 
             // btnClear_Click
             // 
-            btnClear_Click.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+            btnClear_Click.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
             btnClear_Click.BackColor = SystemColors.ControlLight;
             btnClear_Click.Font = new Font("Times New Roman", 13.8F, FontStyle.Bold);
             btnClear_Click.Location = new Point(744, 597);
@@ -482,5 +483,20 @@ namespace WinFormsApp1
             dtpDelivery.Value = DateTime.Today;
             dataGridOrder.ClearSelection();
         }
+
+        private void labelProduct_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label1_Click(object sender, EventArgs e)
+        {
+
+        }
+        private void labelSupplier_Click(object sender, EventArgs e)
+        {
+            // No action required, placeholder to fix CS1061 error.
+        }
+
     }
 }

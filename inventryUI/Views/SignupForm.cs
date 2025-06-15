@@ -1,6 +1,7 @@
 ﻿using inventryUI.Controllers;
 using inventryUI.Models;
 using System;
+using System.Drawing;
 using System.Windows.Forms;
 
 namespace inventryUI.Views
@@ -14,10 +15,16 @@ namespace inventryUI.Views
             InitializeComponent();
             _controller = new UserController(this);
 
+            // Set form size and center
+            this.StartPosition = FormStartPosition.CenterScreen;
+            this.Size = new Size(800, 600);
+
+            // Role dropdown setup
             cmbRole.Items.Clear();
             cmbRole.Items.AddRange(new string[] { "User", "Supplier" });
             cmbRole.SelectedIndex = 0;
 
+            // Event bindings
             btnSignup.Click += BtnSignup_Click;
             btnBackToLogin.Click += BtnBackToLogin_Click;
         }
@@ -61,7 +68,12 @@ namespace inventryUI.Views
                     cmbRole.SelectedIndex = 0;
 
                     this.Hide();
-                    new LoginForm().Show();
+                    var loginForm = new LoginForm();
+                    loginForm.StartPosition = FormStartPosition.CenterScreen;
+                    loginForm.Size = new Size(800, 600);
+                    loginForm.ShowDialog();
+
+                    this.Close(); // Clean up
                 }
             }
             catch (Exception ex)
@@ -72,8 +84,13 @@ namespace inventryUI.Views
 
         private void BtnBackToLogin_Click(object sender, EventArgs e)
         {
-            new LoginForm().Show();
             this.Hide();
+            var loginForm = new LoginForm();
+            loginForm.StartPosition = FormStartPosition.CenterScreen;
+            loginForm.Size = new Size(800, 600);
+            loginForm.ShowDialog();
+
+            this.Close(); // Close this form after returning
         }
 
         public void ShowMessage(string message, string title, MessageBoxIcon icon)

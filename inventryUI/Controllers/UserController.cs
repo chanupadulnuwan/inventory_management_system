@@ -14,16 +14,19 @@ namespace inventryUI.Controllers
         private readonly SignupForm? _viewSign;
         private readonly List<User> userlist = new();
 
+        // Constructor for UserForm (Edit/Delete Profile)
         public UserController(UserForm view)
         {
             _view = view;
         }
 
+        // Constructor for SignupForm (Signup)
         public UserController(SignupForm viewSign)
         {
             _viewSign = viewSign;
         }
 
+        // Load profile for current user
         public void LoadUserProfile()
         {
             if (Session.CurrentUserId == 0)
@@ -53,6 +56,7 @@ namespace inventryUI.Controllers
             }
         }
 
+        // Add a new user to the database
         public bool AddUser(User user)
         {
             string username = user.Username?.Trim().ToLower();
@@ -98,6 +102,7 @@ namespace inventryUI.Controllers
             }
         }
 
+        // Validate user login and set session
         public bool LoginValid(string username, string password)
         {
             if (string.IsNullOrWhiteSpace(username) || string.IsNullOrWhiteSpace(password))
@@ -136,6 +141,7 @@ namespace inventryUI.Controllers
             }
         }
 
+        // Update user's profile
         public bool UpdateUser(int userId, string username, string fullName, string password)
         {
             if (userId != Session.CurrentUserId)
@@ -172,6 +178,7 @@ namespace inventryUI.Controllers
             }
         }
 
+        // Delete user's account
         public bool DeleteUser(int userId)
         {
             if (userId != Session.CurrentUserId)

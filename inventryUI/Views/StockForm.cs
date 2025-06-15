@@ -7,14 +7,19 @@ namespace inventryUI.Views
 {
     public partial class StockForm : Form
     {
-        private AppMenuForm _mainMenu;
+        private readonly AppMenuForm _mainMenu;
         private StockController _controller;
 
         public StockForm(AppMenuForm mainMenu)
         {
             InitializeComponent();
             _mainMenu = mainMenu;
+
             this.Load += StockForm_Load;
+            this.FormClosed += StockForm_FormClosed;
+
+            this.StartPosition = FormStartPosition.CenterScreen;
+            this.Size = new System.Drawing.Size(800, 600);
         }
 
         private void StockForm_Load(object sender, EventArgs e)
@@ -27,14 +32,16 @@ namespace inventryUI.Views
             btnViewStock.Click += BtnViewStock_Click;
             btnProcessSale.Click += BtnProcessSale_Click;
             btnGenerateInvoice.Click += BtnGenerateInvoice_Click;
-            btnBack.Click += btnBack_Click;
+            btnBack.Click += BtnBack_Click;
+
+            LoadStockData();
         }
 
         private void BtnIncrease_Click(object sender, EventArgs e)
         {
-            if (!string.IsNullOrWhiteSpace(txtProductId.Text) && int.TryParse(txtQuantity.Text, out int qty))
+            if (TryGetInput(out string sku, out int qty))
             {
-                _controller.IncreaseStock(txtProductId.Text.Trim(), qty);
+                _controller.IncreaseStock(sku, qty);
                 MessageBox.Show("Stock increased successfully.");
                 LoadStockData();
             }
@@ -42,9 +49,9 @@ namespace inventryUI.Views
 
         private void BtnReduce_Click(object sender, EventArgs e)
         {
-            if (!string.IsNullOrWhiteSpace(txtProductId.Text) && int.TryParse(txtQuantity.Text, out int qty))
+            if (TryGetInput(out string sku, out int qty))
             {
-                _controller.ReduceStock(txtProductId.Text.Trim(), qty);
+                _controller.ReduceStock(sku, qty);
                 MessageBox.Show("Stock reduced successfully.");
                 LoadStockData();
             }
@@ -52,9 +59,9 @@ namespace inventryUI.Views
 
         private void BtnManualAdjust_Click(object sender, EventArgs e)
         {
-            if (!string.IsNullOrWhiteSpace(txtProductId.Text) && int.TryParse(txtQuantity.Text, out int newQty))
+            if (TryGetInput(out string sku, out int qty))
             {
-                _controller.ManualAdjust(txtProductId.Text.Trim(), newQty);
+                _controller.ManualAdjust(sku, qty);
                 MessageBox.Show("Stock manually adjusted.");
                 LoadStockData();
             }
@@ -67,9 +74,9 @@ namespace inventryUI.Views
 
         private void BtnProcessSale_Click(object sender, EventArgs e)
         {
-            if (!string.IsNullOrWhiteSpace(txtProductId.Text) && int.TryParse(txtQuantity.Text, out int qty))
+            if (TryGetInput(out string sku, out int qty))
             {
-                _controller.ProcessSale(txtProductId.Text.Trim(), qty);
+                _controller.ProcessSale(sku, qty);
                 MessageBox.Show("Sale processed.");
                 LoadStockData();
             }
@@ -78,32 +85,32 @@ namespace inventryUI.Views
         private void BtnGenerateInvoice_Click(object sender, EventArgs e)
         {
             string invoiceNumber = Microsoft.VisualBasic.Interaction.InputBox("Enter Invoice Number:", "Invoice Lookup", "");
-            if (!string.IsNullOrEmpty(invoiceNumber))
+            if (!string.IsNullOrWhiteSpace(invoiceNumber))
             {
                 _controller.GenerateInvoice(invoiceNumber);
-                MessageBox.Show("Invoice details fetched.");
+                MessageBox.Show("Invoice generated.");
             }
         }
 
-        private void btnBack_Click(object? sender, EventArgs e)
+        private void BtnBack_Click(object sender, EventArgs e)
         {
-            _mainMenu.Show(); // Show the AppMenu again
-            this.Close();     // Close the StockForm
+            this.Close();
+        }
+
+        private void StockForm_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            _mainMenu.Show();
+        }
+
+        private bool TryGetInput(out string sku, out int qty)
+        {
+            sku = txtProductId.Text.Trim();
+            return int.TryParse(txtQuantity.Text.Trim(), out qty);
         }
 
         private void LoadStockData()
         {
             dgvStock.DataSource = _controller.GetStockLevels();
-        }
-
-        private void button1_Click(object sender, EventArgs e)
-        {
-            // You can remove this if unused
-        }
-
-        private void lblTitle_Click(object sender, EventArgs e)
-        {
-
         }
     }
 }

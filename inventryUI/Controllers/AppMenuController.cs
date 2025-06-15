@@ -1,6 +1,7 @@
-﻿using inventryUI.Views;
+﻿using System.Windows.Forms;
+using inventryUI;
+using inventryUI.Views;
 using Menu;
-using System.Windows.Forms;
 using WinFormsApp1;
 
 namespace inventryUI.Controllers
@@ -12,49 +13,82 @@ namespace inventryUI.Controllers
         public AppMenuController(AppMenuForm view)
         {
             _view = view;
-
-            // Wire up events directly from the form
-            _view.btnManageProducts.Click += (s, e) => OpenProductForm();
-            _view.btnReports.Click += (s, e) => OpenReportForm();
-            _view.btnPurchases.Click += (s, e) => OpenPurchaseOrderForm();
-
-            // 🔁 REPLACED this line:
-            // _view.btnSuppliers.Click += (s, e) => ShowNotImplemented("Suppliers");
-            _view.btnSuppliers.Click += (s, e) => OpenSupplierForm(); // ✅ New Supplier button event
-
-            _view.btnBackup.Click += (s, e) => ShowNotImplemented("Backup");
-            _view.btnStockTracking.Click += (s, e) => ShowNotImplemented("Stock Tracking");
         }
 
-        private void OpenProductForm()
+        public void OpenProductForm()
         {
-            var productForm = new ProductForm();
-            productForm.ShowDialog(_view);
-        }
-
-        private void OpenReportForm()
-        {
-            var reportForm = new ReportForm();
-            reportForm.ShowDialog(_view);
-        }
-
-        private void OpenSupplierForm()
-        {
-            var supplierForm = new SupplierForm();
-            supplierForm.ShowDialog(_view);
-        }
-
-        private void ShowNotImplemented(string featureName)
-        {
-            MessageBox.Show($"{featureName} feature not implemented yet.", "Info", MessageBoxButtons.OK, MessageBoxIcon.Information);
-        }
-
-        private void OpenPurchaseOrderForm()
-        {
-            using (var form = new PurchaseOrderForm())
+            if (Session.CurrentUserRole == "Admin" || Session.CurrentUserRole == "User")
             {
-                form.ShowDialog(_view);
+                var form = new ProductForm(_view);
+                _view.Hide();
+                form.ShowDialog();
+                _view.Show();
             }
+            else
+            {
+                ShowRestrictedMessage("Product Management");
+            }
+        }
+
+        public void OpenReportForm()
+        {
+            var form = new ReportForm(_view); // ✅ Accessible to all roles
+            _view.Hide();
+            form.ShowDialog();
+            _view.Show();
+        }
+
+        public void OpenSupplierForm()
+        {
+            if (Session.CurrentUserRole == "Admin" || Session.CurrentUserRole == "Supplier")
+            {
+                var form = new SupplierForm(_view);
+                _view.Hide();
+                form.ShowDialog();
+                _view.Show();
+            }
+            else
+            {
+                ShowRestrictedMessage("Supplier Management");
+            }
+        }
+
+        public void OpenPurchaseOrderForm()
+        {
+            if (Session.CurrentUserRole == "Admin" || Session.CurrentUserRole == "User")
+            {
+                var form = new PurchaseOrderForm();
+                form.ShowDialog();
+            }
+            else
+            {
+                ShowRestrictedMessage("Purchase Orders");
+            }
+        }
+
+        public void OpenStockForm()
+        {
+            if (Session.CurrentUserRole == "Admin" || Session.CurrentUserRole == "User")
+            {
+                var form = new StockForm(_view);
+                _view.Hide();
+                form.ShowDialog();
+                _view.Show();
+            }
+            else
+            {
+                ShowRestrictedMessage("Stock Tracking");
+            }
+        }
+
+        private void ShowRestrictedMessage(string moduleName)
+        {
+            MessageBox.Show(
+                $"You do not have permission to access the {moduleName} module.",
+                "Access Denied",
+                MessageBoxButtons.OK,
+                MessageBoxIcon.Warning
+            );
         }
     }
 }

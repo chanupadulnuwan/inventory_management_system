@@ -1,14 +1,16 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace inventryUI
 {
     public static class Session
     {
+        // User's ID (e.g., set after login)
+        public static int CurrentUserId { get; set; }
+
+        // Optional: Username or display name
+        public static string CurrentUsername { get; set; }
+
+        // Role of the current user (e.g., "Admin" or "User")
         public static string CurrentUserRole { get; set; } = "Admin";
-        // Set to "User" for testing user view
     }
 }

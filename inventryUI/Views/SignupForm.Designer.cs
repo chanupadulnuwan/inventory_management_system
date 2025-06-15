@@ -29,85 +29,120 @@
             lblBackToLogin = new Label();
             btnBackToLogin = new Button();
             SuspendLayout();
-
+            // 
             // label1
+            // 
             label1.AutoSize = true;
-            label1.Location = new Point(253, 54);
+            label1.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold);
+            label1.Location = new Point(294, 179);
             label1.Name = "label1";
-            label1.Size = new Size(75, 20);
+            label1.Size = new Size(104, 28);
+            label1.TabIndex = 10;
             label1.Text = "Username";
-
+            // 
             // label2
+            // 
             label2.AutoSize = true;
-            label2.Location = new Point(253, 97);
+            label2.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold);
+            label2.Location = new Point(294, 233);
             label2.Name = "label2";
-            label2.Size = new Size(70, 20);
+            label2.Size = new Size(97, 28);
+            label2.TabIndex = 9;
             label2.Text = "Password";
-
+            // 
             // label3
+            // 
             label3.AutoSize = true;
-            label3.Location = new Point(253, 140);
+            label3.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold);
+            label3.Location = new Point(294, 282);
             label3.Name = "label3";
-            label3.Size = new Size(78, 20);
+            label3.Size = new Size(104, 28);
+            label3.TabIndex = 8;
             label3.Text = "Full Name";
-
+            // 
             // label4
+            // 
             label4.AutoSize = true;
-            label4.Location = new Point(253, 183);
+            label4.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold);
+            label4.Location = new Point(326, 329);
             label4.Name = "label4";
-            label4.Size = new Size(40, 20);
+            label4.Size = new Size(51, 28);
+            label4.TabIndex = 7;
             label4.Text = "Role";
-
+            // 
             // txtUsername
-            txtUsername.Location = new Point(340, 51);
+            // 
+            txtUsername.Location = new Point(431, 179);
             txtUsername.Name = "txtUsername";
             txtUsername.Size = new Size(270, 27);
-
+            txtUsername.TabIndex = 6;
+            // 
             // txtPassword
-            txtPassword.Location = new Point(340, 94);
+            // 
+            txtPassword.Location = new Point(431, 233);
             txtPassword.Name = "txtPassword";
             txtPassword.Size = new Size(270, 27);
+            txtPassword.TabIndex = 5;
             txtPassword.UseSystemPasswordChar = true;
-
+            // 
             // txtFullName
-            txtFullName.Location = new Point(340, 137);
+            // 
+            txtFullName.Location = new Point(431, 283);
             txtFullName.Name = "txtFullName";
             txtFullName.Size = new Size(270, 27);
-
+            txtFullName.TabIndex = 4;
+            // 
             // cmbRole
+            // 
             cmbRole.DropDownStyle = ComboBoxStyle.DropDownList;
-            cmbRole.Location = new Point(340, 180);
+            cmbRole.Items.AddRange(new object[] { "User", "Supplier" });
+            cmbRole.Location = new Point(431, 329);
             cmbRole.Name = "cmbRole";
             cmbRole.Size = new Size(270, 28);
-            cmbRole.Items.AddRange(new object[] { "User", "Supplier" });
-
+            cmbRole.TabIndex = 3;
+            // 
             // btnSignup
-            btnSignup.Location = new Point(371, 226);
+            // 
+            btnSignup.BackColor = SystemColors.GradientInactiveCaption;
+            btnSignup.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold);
+            btnSignup.Location = new Point(451, 404);
             btnSignup.Name = "btnSignup";
-            btnSignup.Size = new Size(94, 29);
+            btnSignup.Size = new Size(114, 42);
+            btnSignup.TabIndex = 2;
             btnSignup.Text = "Sign Up";
-            btnSignup.UseVisualStyleBackColor = true;
-            btnSignup.Click += new System.EventHandler(this.BtnSignup_Click);
-
+            btnSignup.UseVisualStyleBackColor = false;
+            btnSignup.Click += BtnSignup_Click;
+            // 
             // lblBackToLogin
+            // 
+            lblBackToLogin.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
             lblBackToLogin.AutoSize = true;
-            lblBackToLogin.Location = new Point(165, 280);
+            lblBackToLogin.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold);
+            lblBackToLogin.Location = new Point(501, 610);
             lblBackToLogin.Name = "lblBackToLogin";
-            lblBackToLogin.Size = new Size(163, 20);
+            lblBackToLogin.Size = new Size(242, 28);
+            lblBackToLogin.TabIndex = 1;
             lblBackToLogin.Text = "Already have an account?";
-
+            // 
             // btnBackToLogin
-            btnBackToLogin.Location = new Point(340, 275);
+            // 
+            btnBackToLogin.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
+            btnBackToLogin.BackColor = SystemColors.GradientInactiveCaption;
+            btnBackToLogin.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold);
+            btnBackToLogin.Location = new Point(762, 603);
             btnBackToLogin.Name = "btnBackToLogin";
-            btnBackToLogin.Size = new Size(130, 29);
+            btnBackToLogin.Size = new Size(190, 42);
+            btnBackToLogin.TabIndex = 0;
             btnBackToLogin.Text = "Back to Login";
-            btnBackToLogin.UseVisualStyleBackColor = true;
-            btnBackToLogin.Click += new System.EventHandler(this.BtnBackToLogin_Click);
-
+            btnBackToLogin.UseVisualStyleBackColor = false;
+            btnBackToLogin.Click += BtnBackToLogin_Click;
+            // 
             // SignupForm
+            // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(800, 450);
+            BackColor = Color.LightSteelBlue;
+            ClientSize = new Size(995, 702);
             Controls.Add(btnBackToLogin);
             Controls.Add(lblBackToLogin);
             Controls.Add(btnSignup);

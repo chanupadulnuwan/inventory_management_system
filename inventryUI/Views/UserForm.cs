@@ -1,5 +1,6 @@
 ﻿using inventryUI.Controllers;
 using System;
+using System.Drawing;
 using System.Windows.Forms;
 
 namespace inventryUI.Views
@@ -13,10 +14,15 @@ namespace inventryUI.Views
             InitializeComponent();
             _controller = new UserController(this);
 
+            // Set consistent size and position
+            this.StartPosition = FormStartPosition.CenterScreen;
+            this.Size = new Size(800, 600);
+
+            // Event bindings
             btnDelete.Click += BtnDelete_Click;
             btnEdit.Click += BtnEdit_Click;
 
-            _controller.LoadUserProfile(); // Auto load on open
+            _controller.LoadUserProfile(); // Load current user's info
         }
 
         private void BtnDelete_Click(object sender, EventArgs e)
