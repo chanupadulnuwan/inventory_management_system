@@ -1,9 +1,9 @@
 using inventryUI;
-using inventryUI.Views;
+using Menu; // Namespace for AppMenuForm
 using System;
 using System.Windows.Forms;
 
-namespace inventryUI
+namespace InventoryUI
 {
     static class Program
     {
@@ -13,26 +13,10 @@ namespace inventryUI
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
 
-            // Test database connection
-            try
-            {
-                using (var conn = DBConnection.GetConnection())
-                {
-                    conn.Open();
-                    conn.Close();
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show($"Database connection failed:\n{ex.Message}", "Connection Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return;
-            }
+            // Optional: Set user role manually for now if login isn't implemented yet
+            Session.CurrentUserRole = "Admin"; // or "User"
 
-            // Launch login form
-            Application.Run(new LoginForm());
-
-            // Optional fallback (will not be reached after Application.Run)
-            // Session.CurrentUserRole = "Admin";
+            Application.Run(new AppMenuForm());
         }
     }
 }
